@@ -5,16 +5,14 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIT255FinalApplication", "CIT255FinalApplication\CIT255FinalApplication.csproj", "{85ECF3F1-E2B4-489F-A945-A01F42EFFA55}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Data", "Data\Data.shproj", "{406A906A-491A-434A-AC1E-5B447FA1B208}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{256AE1BD-35C2-4809-A60D-4F7A16FE4671}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{5650BEAE-7B87-4E53-8225-ABF646D0FAEC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{504648D1-FFD2-4DB3-AC17-3E8DBC2180AB}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.txt = ReadMe.txt
+	EndProjectSection
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Data\Data.projitems*{406a906a-491a-434a-ac1e-5b447fa1b208}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -24,10 +22,6 @@ Global
 		{85ECF3F1-E2B4-489F-A945-A01F42EFFA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85ECF3F1-E2B4-489F-A945-A01F42EFFA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85ECF3F1-E2B4-489F-A945-A01F42EFFA55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{256AE1BD-35C2-4809-A60D-4F7A16FE4671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{256AE1BD-35C2-4809-A60D-4F7A16FE4671}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{256AE1BD-35C2-4809-A60D-4F7A16FE4671}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{256AE1BD-35C2-4809-A60D-4F7A16FE4671}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5650BEAE-7B87-4E53-8225-ABF646D0FAEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5650BEAE-7B87-4E53-8225-ABF646D0FAEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5650BEAE-7B87-4E53-8225-ABF646D0FAEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C9E60EB-6066-4EC7-8B03-1B760F65B07A}
 	EndGlobalSection
 EndGlobal

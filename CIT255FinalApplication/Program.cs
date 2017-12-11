@@ -10,6 +10,7 @@ namespace CIT255FinalApplication
     {
         static void Main(string[] args)
         {
+            Controller appcontroller = new Controller();
         }
     }
 }
