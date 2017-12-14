@@ -65,7 +65,7 @@ namespace Application
                         break;
 
                     case AppEnum.MenuOptions.QueryBy:
-                        QueryFirearmsByManufacturer();
+                        QueryFirearmsById();
                         break;
 
                     case AppEnum.MenuOptions.Quit:
@@ -74,11 +74,12 @@ namespace Application
 
                     default:
                         break;
-                }
+                };
             }
-
-
+            ConsoleView.DisplayExitPrompt();
         }
+
+
         private static void ListAllFirearms()
         {
             FirearmRepositorySQL firearmRepository = new FirearmRepositorySQL();
@@ -140,8 +141,7 @@ namespace Application
             }
 
             ConsoleView.DisplayReset();
-
-            // TODO refactor
+            
             message = String.Format("Firearm ID: {0} had been deleted.", firearmID);
 
             ConsoleView.DisplayMessage(message);
@@ -165,22 +165,40 @@ namespace Application
             }
         }
 
-        private static void QueryFirearmsByManufacturer()
+        private static void QueryFirearmsById()
         {
             FirearmRepositorySQL firearmRepository = new FirearmRepositorySQL();
             IEnumerable<Firearm> matchingFirearms = new List<Firearm>();
-            string manufacturerValue;
+            int lowerId;
+            int higherId;
 
-            ConsoleView.GetManufacturerQueryValue(out manufacturerValue);
+            ConsoleView.GetIdQueryLowHiValues(out lowerId, out higherId);
 
             using (firearmRepository)
             {
-                matchingFirearms = firearmRepository.QueryByManufacturer(manufacturerValue);
+                matchingFirearms = firearmRepository.QueryById(lowerId, higherId);
             }
 
             ConsoleView.DisplayQueryResults(matchingFirearms);
             ConsoleView.DisplayContinuePrompt();
         }
+
+        //private static void QueryFirearmsByManufacturer()
+        //{
+        //    FirearmRepositorySQL firearmRepository = new FirearmRepositorySQL();
+        //    IEnumerable<Firearm> matchingFirearms = new List<Firearm>();
+        //    string manufacturerValue;
+
+        //    ConsoleView.GetManufacturerQueryValue(out manufacturerValue);
+
+        //    using (firearmRepository)
+        //    {
+        //        matchingFirearms = firearmRepository.QueryByManufacturer(manufacturerValue);
+        //    }
+
+        //    ConsoleView.DisplayQueryResults(matchingFirearms);
+        //    ConsoleView.DisplayContinuePrompt();
+        //}
         #endregion
     }
 }

@@ -57,11 +57,15 @@ namespace CIT255FinalApplication
                         break;
 
                     case AppEnum.MenuOptions.UpdateFirearm:
-                        UpdateFirearm();
+                        UpdateSkiRun();
                         break;
 
                     case AppEnum.MenuOptions.DisplayFirearmInfo:
                         DisplayFirearmDetail();
+                        break;
+
+                    case AppEnum.MenuOptions.QueryBy:
+                        QueryFirearmsById();
                         break;
 
                     case AppEnum.MenuOptions.Quit:
@@ -72,9 +76,10 @@ namespace CIT255FinalApplication
                         break;
                 }
             }
-
-
+            ConsoleView.DisplayExitPrompt();
         }
+
+
         private static void ListAllFirearms()
         {
             FirearmRepositorySQL firearmRepository = new FirearmRepositorySQL();
@@ -143,7 +148,7 @@ namespace CIT255FinalApplication
             ConsoleView.DisplayContinuePrompt();
         }
 
-        private static void UpdateFirearm()
+        private static void UpdateSkiRun()
         {
             FirearmRepositorySQL firearmRepository = new FirearmRepositorySQL();
             List<Firearm> firearms = firearmRepository.SelectAll();
@@ -160,6 +165,23 @@ namespace CIT255FinalApplication
             }
         }
 
+        private static void QueryFirearmsById()
+        {
+            FirearmRepositorySQL firearmRepository = new FirearmRepositorySQL();
+            IEnumerable<Firearm> matchingFirearms = new List<Firearm>();
+            int lowerId;
+            int higherId;
+
+            ConsoleView.GetIdQueryLowHiValues(out lowerId, out higherId);
+
+            using (firearmRepository)
+            {
+                matchingFirearms = firearmRepository.QueryById(lowerId, higherId);
+            }
+
+            ConsoleView.DisplayQueryResults(matchingFirearms);
+            ConsoleView.DisplayContinuePrompt();
+        }
         #endregion
     }
 }

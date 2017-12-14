@@ -184,14 +184,25 @@ namespace Application
         }
 
         /// <summary>
-        /// method to query the data by the vertical of each ski run in feet
+        /// method to query the data by the firearm ID
         /// </summary>
-        /// <param name="manufacturerValue">string manufacturerValue</param>
+        /// <param name="lowerId">int minimum vertical</param>
+        /// <param name="higherId">int maximum vertical</param>
         /// <returns></returns>
-        public IEnumerable<Firearm> QueryByManufacturer(string manufacturerValue)
+        public IEnumerable<Firearm> QueryById(int lowerId, int higherId)
         {
-            return _firearms.Where(sr => sr.Manufacturer == manufacturerValue);
+            return _firearms.Where(sr => sr.ID >= lowerId && sr.ID <= higherId);
         }
+
+        ///// <summary>
+        ///// method to query the data by the manufacturer
+        ///// </summary>
+        ///// <param name="manufacturerValue">string manufacturerValue</param>
+        ///// <returns></returns>
+        //public IEnumerable<Firearm> QueryByManufacturer(string manufacturerValue)
+        //{
+        //    return _firearms.Where(sr => sr.Manufacturer == manufacturerValue);
+        //}
 
 
 

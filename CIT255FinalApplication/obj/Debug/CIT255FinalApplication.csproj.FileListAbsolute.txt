@@ -19,3 +19,11 @@ C:\Users\Owner\Desktop\CIT255FinalApplication\CIT255FinalApplication\bin\Debug\D
 C:\Users\Owner\Desktop\CIT255FinalApplication\CIT255FinalApplication\bin\Debug\CIT255FinalApplication.exe
 C:\Users\Owner\Desktop\CIT255FinalApplication\CIT255FinalApplication\bin\Debug\CIT255FinalApplication.pdb
 C:\Users\Owner\Desktop\CIT255FinalApplication\CIT255FinalApplication\obj\Debug\CIT255FinalApplication.csprojResolveAssemblyReference.cache
+F:\CIT255\CIT255FinalApplicationActual\CIT255FinalApplication\bin\Debug\CIT255FinalApplication.exe.config
+F:\CIT255\CIT255FinalApplicationActual\CIT255FinalApplication\obj\Debug\CIT255FinalApplication.exe
+F:\CIT255\CIT255FinalApplicationActual\CIT255FinalApplication\obj\Debug\CIT255FinalApplication.pdb
+F:\CIT255\CIT255FinalApplicationActual\CIT255FinalApplication\bin\Debug\DAL\Firearm.mdf
+F:\CIT255\CIT255FinalApplicationActual\CIT255FinalApplication\bin\Debug\DAL\Firearm_log.ldf
+F:\CIT255\CIT255FinalApplicationActual\CIT255FinalApplication\bin\Debug\CIT255FinalApplication.exe
+F:\CIT255\CIT255FinalApplicationActual\CIT255FinalApplication\bin\Debug\CIT255FinalApplication.pdb
+F:\CIT255\CIT255FinalApplicationActual\CIT255FinalApplication\obj\Debug\CIT255FinalApplication.csprojResolveAssemblyReference.cache

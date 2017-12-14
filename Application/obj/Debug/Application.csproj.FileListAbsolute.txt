@@ -30,3 +30,11 @@ C:\Users\Owner\Desktop\CIT255FinalApplication\Application\bin\Debug\DAL\Firearm_
 C:\Users\Owner\Desktop\CIT255FinalApplication\Application\bin\Debug\Application.exe
 C:\Users\Owner\Desktop\CIT255FinalApplication\Application\bin\Debug\Application.pdb
 C:\Users\Owner\Desktop\CIT255FinalApplication\Application\obj\Debug\Application.csprojResolveAssemblyReference.cache
+F:\CIT255\CIT255FinalApplicationActual\Application\bin\Debug\Application.exe.config
+F:\CIT255\CIT255FinalApplicationActual\Application\obj\Debug\Application.exe
+F:\CIT255\CIT255FinalApplicationActual\Application\obj\Debug\Application.pdb
+F:\CIT255\CIT255FinalApplicationActual\Application\bin\Debug\DAL\Firearm.mdf
+F:\CIT255\CIT255FinalApplicationActual\Application\bin\Debug\DAL\Firearm_log.ldf
+F:\CIT255\CIT255FinalApplicationActual\Application\bin\Debug\Application.exe
+F:\CIT255\CIT255FinalApplicationActual\Application\bin\Debug\Application.pdb
+F:\CIT255\CIT255FinalApplicationActual\Application\obj\Debug\Application.csprojResolveAssemblyReference.cache

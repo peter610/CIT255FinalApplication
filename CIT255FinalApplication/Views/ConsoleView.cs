@@ -36,13 +36,14 @@ namespace CIT255FinalApplication
         #region METHODS
         public static void DisplayTitleScreen()
         {
+            Console.SetWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-            Console.WriteLine(@" _____                  ______   _   _");
-            Console.WriteLine(@"|  __ \                 | ___ \ | | | |");
-            Console.WriteLine(@"| |  \/_   _ _ __  ___  | |_/ / | | | |___");
-            Console.WriteLine(@"| | __| | | | '_ \/ __| |    /  | | | / __|");
-            Console.WriteLine(@"| |_\ \ |_| | | | \__ \ | |\ \  | |_| \__ \");
-            Console.WriteLine(@" \____/\__,_|_| |_|___/ \_| \_|  \___/|___/");
+            Console.WriteLine(ConsoleUtil.Center(@" _____                  ______   _   _", WINDOW_WIDTH));
+            Console.WriteLine(ConsoleUtil.Center(@"|  __ \                 | ___ \ | | | |", WINDOW_WIDTH));
+            Console.WriteLine(ConsoleUtil.Center(@"   | |  \/_   _ _ __  ___  | |_/ / | | | |___", WINDOW_WIDTH));
+            Console.WriteLine(ConsoleUtil.Center(@"    | | __| | | | '_ \/ __| |    /  | | | / __|", WINDOW_WIDTH));
+            Console.WriteLine(ConsoleUtil.Center(@"    | |_\ \ |_| | | | \__ \ | |\ \  | |_| \__ \", WINDOW_WIDTH));
+            Console.WriteLine(ConsoleUtil.Center(@"     \____/\__,_|_| |_|___/ \_| \_|  \___/|___/", WINDOW_WIDTH));
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
@@ -50,10 +51,21 @@ namespace CIT255FinalApplication
         }
 
 
+        /// <summary>
+        /// display the Continue prompt
+        /// </summary>
         public static void DisplayContinuePrompt()
         {
-            Console.WriteLine("Press any key to continue.");
-            Console.ReadKey();
+            Console.CursorVisible = false;
+
+            Console.WriteLine();
+
+            Console.WriteLine(ConsoleUtil.Center("Press any key to continue.", WINDOW_WIDTH));
+            ConsoleKeyInfo response = Console.ReadKey();
+
+            Console.WriteLine();
+
+            Console.CursorVisible = true;
         }
 
         public static AppEnum.MenuOptions GetUserMenuOption()
@@ -62,16 +74,23 @@ namespace CIT255FinalApplication
 
             AppEnum.MenuOptions userMenuOption = AppEnum.MenuOptions.None;
 
+            string leftTab = ConsoleUtil.FillStringWithSpaces(DISPLAY_HORIZONTAL_MARGIN);
+
+            DisplayMessage("");
+            Console.WriteLine(ConsoleUtil.Center("Main Menu", WINDOW_WIDTH));
+            DisplayMessage("");
+
             Console.WriteLine(
-                "1. Display All Firearms" + Environment.NewLine +
-                "2. Display Firearm Info" + Environment.NewLine +
-                "3. Add a Firearm" + Environment.NewLine +
-                "4. Delete a Firearm" + Environment.NewLine +
-                "5. Update a Firearm" + Environment.NewLine +
-                "E. Exit" + Environment.NewLine);
+                leftTab + "1. Display All Firearms" + Environment.NewLine +
+                leftTab + "2. Display Firearm Info" + Environment.NewLine +
+                leftTab + "3. Add a Firearm" + Environment.NewLine +
+                leftTab + "4. Delete a Firearm" + Environment.NewLine +
+                leftTab + "5. Update a Firearm" + Environment.NewLine +
+                leftTab + "6. Query By ID" + Environment.NewLine +
+                leftTab + "E. Exit" + Environment.NewLine);
 
             Console.WriteLine("");
-            Console.WriteLine("Enter a menu option.");
+            Console.WriteLine(ConsoleUtil.Center("Enter a menu option.", WINDOW_WIDTH));
             ConsoleKeyInfo userResponse = Console.ReadKey(true);
 
             switch (userResponse.KeyChar)
@@ -91,11 +110,25 @@ namespace CIT255FinalApplication
                 case '5':
                     userMenuOption = AppEnum.MenuOptions.UpdateFirearm;
                     break;
+                case '6':
+                    userMenuOption = AppEnum.MenuOptions.QueryBy;
+                    break;
                 case 'e':
                 case 'E':
                     userMenuOption = AppEnum.MenuOptions.Quit;
                     break;
                 default:
+                    DisplayMessage("");
+                    DisplayMessage("");
+                    DisplayMessage("It appears you have selected an incorrect choice.");
+                    DisplayMessage("");
+                    DisplayMessage("Press any key to try again or the ESC key to exit.");
+
+                    userResponse = Console.ReadKey(true);
+                    if (userResponse.Key == ConsoleKey.Escape)
+                    {
+                        userMenuOption = AppEnum.MenuOptions.Quit;
+                    }
                     break;
             }
             return userMenuOption;
@@ -106,14 +139,15 @@ namespace CIT255FinalApplication
         /// </summary>
         public static void DisplayAllFirearms(List<Firearm> firearms)
         {
-            Console.Clear();
+            DisplayReset();
 
             StringBuilder columnHeader = new StringBuilder();
 
             columnHeader.Append("ID".PadRight(8));
             columnHeader.Append("Firearm".PadRight(25));
 
-            //DisplayMessage(columnHeader.ToString());
+            DisplayMessage(columnHeader.ToString());
+            Console.WriteLine();
 
             foreach (Firearm firearm in firearms)
             {
@@ -122,9 +156,7 @@ namespace CIT255FinalApplication
                 firearmInfo.Append(firearm.ID.ToString().PadRight(8));
                 firearmInfo.Append(firearm.Name.PadRight(25));
 
-
-                Console.WriteLine(firearmInfo);
-                //DisplayMessage(skiRunInfo.ToString());
+                DisplayMessage(firearmInfo.ToString());
             }
         }
 
@@ -157,33 +189,33 @@ namespace CIT255FinalApplication
         {
             Firearm firearm = new Firearm();
 
-            Console.Clear();
+            DisplayReset();
 
-            Console.WriteLine(""); ;
-            Console.WriteLine("Add A Firearm");
-            Console.WriteLine("");
+            DisplayMessage("");
+            Console.WriteLine(ConsoleUtil.Center("Add A Firearm", WINDOW_WIDTH));
+            DisplayMessage("");
 
-            Console.WriteLine("Enter the firearm ID: "); 
+            DisplayPromptMessage("Enter the firearm ID: "); 
             firearm.ID = ConsoleUtil.ValidateIntegerResponse("Please enter the firearm ID: ", Console.ReadLine());
             Console.WriteLine("");
 
-            Console.WriteLine("Enter the firearm name: "); 
+            DisplayPromptMessage("Enter the firearm name: "); 
             firearm.Name = Console.ReadLine();
             Console.WriteLine("");
 
-            Console.WriteLine("Enter the manufacturer: ");
+            DisplayPromptMessage("Enter the manufacturer: ");
             firearm.Manufacturer = Console.ReadLine();
             Console.WriteLine("");
 
-            Console.WriteLine("Enter the firearm type: ");
+            DisplayPromptMessage("Enter the firearm type: ");
             firearm.FirearmType = Console.ReadLine();
             Console.WriteLine("");
 
-            Console.WriteLine("Enter the caliber/guage: ");
+            DisplayPromptMessage("Enter the caliber/guage: ");
             firearm.AmmoType = Console.ReadLine();
             Console.WriteLine("");
 
-            Console.WriteLine("Enter the barrel length: ");
+            DisplayPromptMessage("Enter the barrel length: ");
             firearm.BarrelLength = ConsoleUtil.ValidateIntegerResponse("Please enter the barrel length: ", Console.ReadLine());
             Console.WriteLine("");
 
@@ -256,6 +288,77 @@ namespace CIT255FinalApplication
         }
 
         /// <summary>
+        /// method gets the lower and higher values for the ID query
+        /// </summary>
+        /// <param name="lowerId">minimum vertical</param>
+        /// <param name="higherId">maximum vertical</param>
+        public static void GetIdQueryLowHiValues(out int lowerId, out int higherId)
+        {
+            lowerId = 0;
+            higherId = 0;
+            string userResponse = "";
+
+            DisplayReset();
+
+            DisplayMessage("");
+            Console.WriteLine(ConsoleUtil.Center("Query Firearms by Id", WINDOW_WIDTH));
+            DisplayMessage("");
+
+            DisplayPromptMessage("Enter the lower ID: ");
+            userResponse = Console.ReadLine();
+            if (userResponse != "")
+            {
+                lowerId = ConsoleUtil.ValidateIntegerResponse("Please enter the lower ID.", userResponse);
+            }
+
+            DisplayMessage("");
+
+            DisplayPromptMessage("Enter the higher ID: ");
+            userResponse = Console.ReadLine();
+            if (userResponse != "")
+            {
+                higherId = ConsoleUtil.ValidateIntegerResponse("Please enter the higher ID.", userResponse);
+            }
+
+            DisplayMessage("");
+
+            DisplayMessage(String.Format("You have entered {0} as the lower ID and {1} as the higher ID.", lowerId, higherId));
+
+            DisplayMessage("");
+
+            DisplayContinuePrompt();
+        }
+
+        public static void DisplayQueryResults(IEnumerable<Firearm> matchingFirearms)
+        {
+            DisplayReset();
+
+            DisplayMessage("");
+            Console.WriteLine(ConsoleUtil.Center("Display Firearm Query Results", WINDOW_WIDTH));
+            DisplayMessage("");
+
+            DisplayMessage("All of the matching firearms are displayed below;");
+            DisplayMessage("");
+
+            StringBuilder columnHeader = new StringBuilder();
+
+            columnHeader.Append("ID".PadRight(8));
+            columnHeader.Append("Firearm".PadRight(25));
+
+            DisplayMessage(columnHeader.ToString());
+
+            foreach (Firearm firearm in matchingFirearms)
+            {
+                StringBuilder firearmInfo = new StringBuilder();
+
+                firearmInfo.Append(firearm.ID.ToString().PadRight(8));
+                firearmInfo.Append(firearm.Name.PadRight(25));
+
+                DisplayMessage(firearmInfo.ToString());
+            }
+        }
+
+        /// <summary>
         /// reset display to default size and colors including the header
         /// </summary>
         public static void DisplayReset()
@@ -279,11 +382,11 @@ namespace CIT255FinalApplication
         /// <summary>
         /// method to get the user's choice of firearm id
         /// </summary>
-        public static int GetFirearmID(List<Firearm> firearm)
+        public static int GetFirearmID(List<Firearm> firearms)
         {
             int firearmID = -1;
 
-            //DisplayAllSkiRuns(skiRuns);
+            DisplayAllFirearms(firearms);
 
             DisplayMessage("");
             DisplayPromptMessage("Enter the firearm ID: ");
@@ -327,6 +430,23 @@ namespace CIT255FinalApplication
             {
                 Console.WriteLine();
             }
+        }
+
+        /// <summary>
+        /// display the Exit prompt
+        /// </summary>
+        public static void DisplayExitPrompt()
+        {
+            DisplayReset();
+
+            Console.CursorVisible = false;
+
+            Console.WriteLine();
+            DisplayMessage("Thank you for using our application. Press any key to Exit.");
+
+            Console.ReadKey();
+
+            System.Environment.Exit(1);
         }
 
         /// <summary>

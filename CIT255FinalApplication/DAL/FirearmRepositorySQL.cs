@@ -148,7 +148,7 @@ namespace CIT255FinalApplication
         }
 
         /// <summary>
-        /// method to update an existing firearm
+        /// method to update an existing ski run
         /// </summary>
         /// <param name="firearm">firearm object</param>
         public void Update(Firearm firearm)
@@ -181,6 +181,17 @@ namespace CIT255FinalApplication
                     Console.WriteLine(sqlCommandString);
                 }
             }
+        }
+
+        /// <summary>
+        /// method to query the data by the firearm ID
+        /// </summary>
+        /// <param name="lowerId">int minimum vertical</param>
+        /// <param name="higherId">int maximum vertical</param>
+        /// <returns></returns>
+        public IEnumerable<Firearm> QueryById(int lowerId, int higherId)
+        {
+            return _firearms.Where(sr => sr.ID >= lowerId && sr.ID <= higherId);
         }
 
         /// <summary>
